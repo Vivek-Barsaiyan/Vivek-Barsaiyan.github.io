@@ -397,7 +397,84 @@
       padding: 2px 8px;
       border: 1px solid var(--border);
     }
+        /* ── PROJECTS ── */
+    #projects { border-bottom: 1px solid var(--border); }
 
+    #projects h2 {
+      font-family: var(--serif);
+      font-size: 2.2rem;
+      letter-spacing: -0.02em;
+      margin-bottom: 2.5rem;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+
+    .project-card {
+      background: var(--card-bg);
+      padding: 2rem;
+      transition: background var(--transition);
+      cursor: default;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 0; height: 2px;
+      background: var(--accent);
+      transition: width 0.3s ease;
+    }
+
+    .project-card:hover { background: #fdfcf9; }
+    .project-card:hover::after { width: 100%; }
+
+    .project-tag {
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.8rem;
+    }
+
+    .project-title {
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.6rem;
+    }
+
+    .project-desc {
+      font-size: 13px;
+      color: var(--ink-muted);
+      line-height: 1.7;
+      margin-bottom: 1.2rem;
+    }
+
+    .project-links {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .project-link {
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid var(--ink-faint);
+      padding-bottom: 1px;
+      transition: color var(--transition), border-color var(--transition);
+    }
+
+    .project-link:hover { color: var(--accent); border-color: var(--accent); }
     /* ── CONTACT ── */
     #contact { padding-bottom: 8rem; }
 
@@ -534,6 +611,7 @@
       .about-grid,
       .projects-grid,
       .skills-columns,
+      .hobby-grid,
       .contact-inner { grid-template-columns: 1fr; gap: 2rem; }
       .blog-item { grid-template-columns: 1fr; gap: 0.4rem; }
       .blog-tag { display: none; }
@@ -550,7 +628,7 @@
       <li><a href="#projects">Projects</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#blog">Blog</a></li>
-      <li><a href="#blog">Hobby</a></li>
+      <li><a href="#hobby">Hobby</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
@@ -716,7 +794,7 @@
 
     </div>
   </section>
-
+  
   <!-- CONTACT -->
   <section id="contact">
     <div class="label">Contact</div>
