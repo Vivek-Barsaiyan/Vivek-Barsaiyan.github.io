@@ -397,17 +397,18 @@
       padding: 2px 8px;
       border: 1px solid var(--border);
     }
-        /* ── PROJECTS ── */
-    #projects { border-bottom: 1px solid var(--border); }
+    
+    /* ── HOBBY  ── */
+    #hobby { border-bottom: 1px solid var(--border); }
 
-    #projects h2 {
+    #hobby h2 {
       font-family: var(--serif);
       font-size: 2.2rem;
       letter-spacing: -0.02em;
       margin-bottom: 2.5rem;
     }
 
-    .projects-grid {
+    .hobby-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 1.5px;
@@ -415,7 +416,7 @@
       border: 1px solid var(--border);
     }
 
-    .project-card {
+    .hobby-card {
       background: var(--card-bg);
       padding: 2rem;
       transition: background var(--transition);
@@ -424,7 +425,7 @@
       overflow: hidden;
     }
 
-    .project-card::after {
+    .hobby-card::after {
       content: '';
       position: absolute;
       bottom: 0; left: 0;
@@ -433,10 +434,10 @@
       transition: width 0.3s ease;
     }
 
-    .project-card:hover { background: #fdfcf9; }
-    .project-card:hover::after { width: 100%; }
+    .hobby-card:hover { background: #fdfcf9; }
+    .hobby-card:hover::after { width: 100%; }
 
-    .project-tag {
+    .hobby-tag {
       font-size: 10px;
       letter-spacing: 0.1em;
       text-transform: uppercase;
@@ -444,26 +445,26 @@
       margin-bottom: 0.8rem;
     }
 
-    .project-title {
+    .hobby-title {
       font-family: var(--serif);
       font-size: 1.3rem;
       letter-spacing: -0.01em;
       margin-bottom: 0.6rem;
     }
 
-    .project-desc {
+    .hobby-desc {
       font-size: 13px;
       color: var(--ink-muted);
       line-height: 1.7;
       margin-bottom: 1.2rem;
     }
 
-    .project-links {
+    .hobby-links {
       display: flex;
       gap: 1rem;
     }
 
-    .project-link {
+    .hobby-link {
       font-size: 11px;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -474,7 +475,9 @@
       transition: color var(--transition), border-color var(--transition);
     }
 
-    .project-link:hover { color: var(--accent); border-color: var(--accent); }
+    .hobby-link:hover { color: var(--accent); border-color: var(--accent); }
+    
+    
     /* ── CONTACT ── */
     #contact { padding-bottom: 8rem; }
 
