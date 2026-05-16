@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Your Name — Portfolio. Brief description of what you do."/>
+  <title>Your Name | Portfolio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #faf9f6;
+      --white:    #ffffff;
+      --ink:      #1a1a1a;
+      --muted:    #6b6b6b;
+      --faint:    #b8b8b8;
+      --border:   #e5e2dc;
+      --card:     #f3f1ed;
+      --accent:   #c06b3a;
+      --accent2:  #3a7dc0;
+      --serif:    'Lora', Georgia, serif;
+      --sans:     'DM Sans', system-ui, sans-serif;
+      --max:      1020px;
+      --ease:     cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.65;
+      font-weight: 300;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: sticky;
+      top: 0; z-index: 50;
+      background: rgba(250,249,246,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 3rem; height: 58px;
+    }
+    .nav-name {
+      font-family: var(--serif);
+      font-size: 1.05rem; font-weight: 600;
+      color: var(--ink); text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-size: 13.5px; font-weight: 400;
+      color: var(--muted); text-decoration: none;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-cta {
+      font-size: 13px; font-weight: 600;
+      color: var(--white); background: var(--ink);
+      padding: .45rem 1.1rem; border-radius: 4px;
+      text-decoration: none;
+      transition: background .2s;
+    }
+    .nav-cta:hover { background: var(--accent); }
+
+    /* ─── HERO ─── */
+    #hero {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 5.5rem 3rem 5rem;
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 5rem;
+      align-items: center;
+    }
+    .hero-left { }
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: .5rem;
+      font-size: 12px; font-weight: 600; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--accent);
+      margin-bottom: 1.4rem;
+    }
+    .hero-tag::before {
+      content: '';
+      width: 28px; height: 2px;
+      background: var(--accent);
+    }
+    .hero-name {
+      font-family: var(--serif);
+      font-size: clamp(2.6rem, 5vw, 4rem);
+      font-weight: 600; line-height: 1.1;
+      letter-spacing: -0.025em;
+      margin-bottom: 1.1rem;
+    }
+    .hero-name em { font-style: italic; color: var(--accent); }
+    .hero-bio {
+      font-size: 1.05rem; font-weight: 300;
+      color: var(--muted); line-height: 1.8;
+      max-width: 500px; margin-bottom: 2rem;
+    }
+    .hero-links { display: flex; gap: .75rem; flex-wrap: wrap; }
+    .hl {
+      display: inline-flex; align-items: center; gap: .4rem;
+      font-size: 13.5px; font-weight: 500;
+      padding: .55rem 1.1rem; border-radius: 4px;
+      text-decoration: none; transition: all .2s;
+    }
+    .hl-solid {
+      background: var(--ink); color: var(--white);
+    }
+    .hl-solid:hover { background: var(--accent); }
+    .hl-outline {
+      border: 1px solid var(--border); color: var(--ink);
+    }
+    .hl-outline:hover { border-color: var(--ink); }
+
+    /* Photo */
+    .hero-photo-wrap {
+      position: relative;
+    }
+    .hero-photo {
+      width: 100%; aspect-ratio: 3/4;
+      background: var(--card);
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 5rem;
+      color: var(--faint);
+      position: relative;
+    }
+    .hero-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .photo-placeholder {
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: .5rem; width: 100%; height: 100%;
+      color: var(--faint);
+    }
+    .photo-placeholder svg { width: 60px; height: 60px; }
+    .photo-placeholder span { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; }
+
+    .hero-photo-badge {
+      position: absolute;
+      bottom: -14px; right: -14px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: .7rem 1rem;
+      font-size: 12px; font-weight: 600;
+      color: var(--ink);
+      box-shadow: 0 4px 16px rgba(0,0,0,.07);
+    }
+    .hero-photo-badge span {
+      display: block;
+      font-family: var(--serif);
+      font-size: 1.4rem; font-weight: 600;
+      color: var(--accent); line-height: 1;
+      margin-bottom: .15rem;
+    }
+
+    /* ─── SECTION WRAPPER ─── */
+    .section {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 5rem 3rem;
+      border-top: 1px solid var(--border);
+    }
+    .sec-hdr {
+      display: flex; justify-content: space-between;
+      align-items: baseline; margin-bottom: 2.5rem;
+    }
+    .sec-label {
+      font-size: 11px; font-weight: 700;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: var(--accent);
+    }
+    .sec-title {
+      font-family: var(--serif);
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 600; letter-spacing: -0.02em;
+      line-height: 1.2; margin-top: .3rem;
+    }
+    .sec-more {
+      font-size: 13px; font-weight: 500;
+      color: var(--accent); text-decoration: none;
+      border-bottom: 1px solid currentColor;
+      padding-bottom: 1px; white-space: nowrap;
+      transition: color .2s;
+    }
+    .sec-more:hover { color: var(--ink); }
+
+    /* ─── FEATURED WORK ─── */
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+    .wcard {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: transform .3s var(--ease), box-shadow .3s var(--ease);
+    }
+    .wcard:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(0,0,0,.07);
+    }
+    .wcard.wide { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; }
+    .wcard-img {
+      background: linear-gradient(135deg, var(--card) 0%, #e8e4dc 100%);
+      min-height: 200px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3.5rem;
+      position: relative; overflow: hidden;
+    }
+    .wcard.wide .wcard-img { min-height: 260px; }
+    .wcard-img::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom right, rgba(192,107,58,.06), transparent);
+    }
+    .wcard-body { padding: 1.6rem; }
+    .wcard-cat {
+      font-size: 11px; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: .5rem;
+    }
+    .wcard-title {
+      font-family: var(--serif);
+      font-size: 1.15rem; font-weight: 600;
+      letter-spacing: -0.015em; line-height: 1.3;
+      color: var(--ink); margin-bottom: .5rem;
+    }
+    .wcard-desc {
+      font-size: 13.5px; color: var(--muted);
+      line-height: 1.7; margin-bottom: 1.1rem;
+    }
+    .wcard-tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: 1rem; }
+    .wtag {
+      font-size: 11px; color: var(--muted);
+      background: var(--card);
+      padding: 2px 9px; border-radius: 100px;
+      border: 1px solid var(--border);
+    }
+    .wlink {
+      font-size: 13px; font-weight: 600;
+      color: var(--accent2); text-decoration: none;
+      display: inline-flex; align-items: center; gap: .2rem;
+      transition: gap .2s;
+    }
+    .wlink:hover { gap: .45rem; }
+
+    /* ─── ABOUT / BIO ─── */
+    #about-full {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    .about-text p {
+      font-size: 1rem; color: var(--muted);
+      line-height: 1.85; margin-bottom: 1.1rem;
+    }
+    .about-text p strong { color: var(--ink); font-weight: 600; }
+    .about-aside { }
+    .aside-block { margin-bottom: 2rem; }
+    .aside-title {
+      font-size: 11px; font-weight: 700;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: var(--faint); margin-bottom: .8rem;
+      padding-bottom: .5rem; border-bottom: 1px solid var(--border);
+    }
+    .aside-list { list-style: none; }
+    .aside-list li {
+      font-size: 13.5px; color: var(--muted);
+      padding: .3rem 0;
+      display: flex; align-items: flex-start; gap: .5rem;
+    }
+    .aside-list li::before {
+      content: '→'; color: var(--accent); flex-shrink: 0;
+      font-size: 12px; margin-top: 2px;
+    }
+
+    /* ─── PUBLICATIONS ─── */
+    .pub-list { display: flex; flex-direction: column; gap: 0; }
+    .pub-item {
+      padding: 1.4rem 0;
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 60px 1fr;
+      gap: 1.5rem;
+      align-items: start;
+    }
+    .pub-year {
+      font-family: var(--serif);
+      font-size: 1rem; font-weight: 600;
+      color: var(--faint); padding-top: .1rem;
+    }
+    .pub-title {
+      font-family: var(--serif);
+      font-size: .98rem; font-weight: 600;
+      color: var(--ink); line-height: 1.4;
+      margin-bottom: .25rem;
+    }
+    .pub-venue {
+      font-size: 13px; color: var(--muted);
+      font-style: italic; margin-bottom: .4rem;
+    }
+    .pub-links { display: flex; gap: .8rem; }
+    .pub-link {
+      font-size: 12px; font-weight: 600;
+      color: var(--accent2); text-decoration: none;
+      letter-spacing: .03em;
+      border-bottom: 1px solid currentColor;
+      padding-bottom: 1px;
+      transition: color .2s;
+    }
+    .pub-link:hover { color: var(--ink); }
+
+    /* ─── TALKS ─── */
+    .talks-grid {
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      gap: 1.2rem;
+    }
+    .talk-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.5rem;
+      transition: box-shadow .25s var(--ease);
+    }
+    .talk-card:hover { box-shadow: 0 8px 28px rgba(0,0,0,.06); }
+    .talk-meta {
+      display: flex; justify-content: space-between;
+      align-items: center; margin-bottom: .8rem;
+    }
+    .talk-event {
+      font-size: 11px; font-weight: 700;
+      letter-spacing: .08em; text-transform: uppercase;
+      color: var(--accent);
+    }
+    .talk-date { font-size: 12px; color: var(--faint); }
+    .talk-title {
+      font-family: var(--serif);
+      font-size: 1rem; font-weight: 600;
+      line-height: 1.4; color: var(--ink);
+      margin-bottom: .5rem;
+    }
+    .talk-desc { font-size: 13px; color: var(--muted); line-height: 1.65; }
+
+    /* ─── CONTACT ─── */
+    #contact-sec { background: var(--white); border-top: 1px solid var(--border); }
+    .contact-inner {
+      max-width: var(--max); margin: 0 auto;
+      padding: 5rem 3rem;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 5rem; align-items: start;
+    }
+    .contact-text .sec-title { margin-bottom: 1rem; }
+    .contact-text p {
+      font-size: .98rem; color: var(--muted);
+      line-height: 1.8; margin-bottom: 1.5rem;
+    }
+    .social-row { display: flex; flex-direction: column; gap: .3rem; }
+    .soc {
+      display: flex; align-items: center; gap: .9rem;
+      padding: .65rem 0; border-bottom: 1px solid var(--border);
+      text-decoration: none; color: var(--ink);
+      font-size: 14px; font-weight: 400;
+      transition: color .2s;
+    }
+    .soc:hover { color: var(--accent); }
+    .soc svg { width: 16px; height: 16px; flex-shrink: 0; color: var(--faint); }
+    .soc:hover svg { color: var(--accent); }
+
+    /* Form */
+    .contact-form { display: flex; flex-direction: column; gap: .9rem; }
+    .fg { display: flex; flex-direction: column; gap: .3rem; }
+    .fg label {
+      font-size: 11px; font-weight: 700;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--faint);
+    }
+    .fg input, .fg textarea {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 5px; padding: .7rem .9rem;
+      font-family: var(--sans); font-size: 14px;
+      color: var(--ink); outline: none; resize: none;
+      transition: border-color .2s, box-shadow .2s;
+      width: 100%;
+    }
+    .fg input:focus, .fg textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(192,107,58,.1);
+    }
+    .fsub {
+      align-self: flex-start;
+      background: var(--ink); color: var(--white);
+      border: none; border-radius: 5px;
+      padding: .75rem 1.6rem;
+      font-family: var(--sans); font-size: 14px; font-weight: 600;
+      cursor: pointer; margin-top: .3rem;
+      transition: background .2s;
+    }
+    .fsub:hover { background: var(--accent); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      max-width: var(--max); margin: 0 auto;
+      padding: 1.5rem 3rem;
+      border-top: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .f-copy { font-size: 12.5px; color: var(--faint); }
+    .f-top {
+      font-size: 12.5px; color: var(--muted);
+      text-decoration: none; transition: color .2s;
+    }
+    .f-top:hover { color: var(--accent); }
+
+    /* ─── ANIMATIONS ─── */
+    .fade { opacity: 0; transform: translateY(20px); }
+
+    /* ─── GAME SIDEBAR ─── */
+    #game-sidebar {
+      position: fixed;
+      top: 0; left: 0; bottom: 0;
+      width: 200px;
+      z-index: 200;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 2rem 0 2rem 1.4rem;
+      pointer-events: none;
+    }
+
+    /* scanline overlay on sidebar */
+    #game-sidebar::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        to bottom,
+        transparent 0px,
+        transparent 3px,
+        rgba(0,0,0,0.018) 3px,
+        rgba(0,0,0,0.018) 4px
+      );
+      pointer-events: none;
+    }
+
+    .sidebar-label {
+      font-family: var(--sans);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--faint);
+      margin-bottom: 1.4rem;
+      padding-left: 1.6rem;
+    }
+
+    .sidebar-menu {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      pointer-events: all;
+    }
+
+    .sidebar-menu li {
+      position: relative;
+    }
+
+    .sidebar-menu a {
+      display: flex;
+      align-items: center;
+      gap: .7rem;
+      padding: .5rem .8rem .5rem 1.2rem;
+      text-decoration: none;
+      font-family: var(--sans);
+      font-size: 12.5px;
+      font-weight: 500;
+      letter-spacing: .02em;
+      color: var(--faint);
+      border-left: 2px solid transparent;
+      border-radius: 0 4px 4px 0;
+      transition: color .2s, border-color .2s, background .2s, padding-left .2s;
+      position: relative;
+    }
+
+    /* the ▶ cursor indicator */
+    .sidebar-menu a .s-cursor {
+      font-size: 8px;
+      opacity: 0;
+      transform: translateX(-4px);
+      transition: opacity .2s, transform .2s;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .sidebar-menu a .s-num {
+      font-family: var(--sans);
+      font-size: 9px;
+      font-weight: 700;
+      color: var(--faint);
+      opacity: .5;
+      min-width: 14px;
+      transition: color .2s;
+    }
+
+    .sidebar-menu a .s-text {
+      flex: 1;
+    }
+
+    /* hover */
+    .sidebar-menu a:hover {
+      color: var(--ink);
+      padding-left: 1.6rem;
+      background: rgba(0,0,0,.03);
+      border-left-color: var(--border);
+    }
+
+    .sidebar-menu a:hover .s-cursor {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .sidebar-menu a:hover .s-num {
+      color: var(--accent);
+      opacity: 1;
+    }
+
+    /* active */
+    .sidebar-menu a.active {
+      color: var(--ink);
+      font-weight: 700;
+      border-left-color: var(--accent);
+      background: rgba(192,107,58,.06);
+      padding-left: 1.6rem;
+    }
+
+    .sidebar-menu a.active .s-cursor {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .sidebar-menu a.active .s-num {
+      color: var(--accent);
+      opacity: 1;
+    }
+
+    /* progress bar at bottom */
+    .sidebar-progress {
+      margin-top: 2rem;
+      padding-left: 1.2rem;
+    }
+
+    .sidebar-progress-track {
+      width: 80px;
+      height: 3px;
+      background: var(--border);
+      border-radius: 2px;
+      overflow: hidden;
+      margin-bottom: .4rem;
+    }
+
+    .sidebar-progress-fill {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 2px;
+      width: 0%;
+      transition: width .1s linear;
+    }
+
+    .sidebar-progress-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--faint);
+    }
+
+    /* push page content right to make room */
+    body { padding-left: 200px; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      #game-sidebar { display: none; }
+      body { padding-left: 0; }
+    }
+
+    @media (max-width: 800px) {
+      nav { padding: 0 1.5rem; }
+      .nav-links { display: none; }
+      #hero { grid-template-columns: 1fr; gap: 2.5rem; padding: 3rem 1.5rem; }
+      .hero-photo-wrap { max-width: 260px; }
+      .section { padding: 3.5rem 1.5rem; }
+      .work-grid, .talks-grid { grid-template-columns: 1fr; }
+      .wcard.wide { grid-template-columns: 1fr; }
+      #about-full { grid-template-columns: 1fr; gap: 2rem; }
+      .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      footer { flex-direction: column; gap: .8rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- GAME SIDEBAR -->
+  <aside id="game-sidebar">
+    <div class="sidebar-label">Navigate</div>
+    <ul class="sidebar-menu">
+      <li><a href="#hero" data-section="hero"><span class="s-cursor">▶</span><span class="s-num">00</span><span class="s-text">Home</span></a></li>
+      <li><a href="#work" data-section="work"><span class="s-cursor">▶</span><span class="s-num">01</span><span class="s-text">Work</span></a></li>
+      <li><a href="#about" data-section="about"><span class="s-cursor">▶</span><span class="s-num">02</span><span class="s-text">About</span></a></li>
+      <li><a href="#publications" data-section="publications"><span class="s-cursor">▶</span><span class="s-num">03</span><span class="s-text">Publications</span></a></li>
+      <li><a href="#talks" data-section="talks"><span class="s-cursor">▶</span><span class="s-num">04</span><span class="s-text">Talks</span></a></li>
+      <li><a href="#contact-sec" data-section="contact-sec"><span class="s-cursor">▶</span><span class="s-num">05</span><span class="s-text">Contact</span></a></li>
+    </ul>
+    <div class="sidebar-progress">
+      <div class="sidebar-progress-track">
+        <div class="sidebar-progress-fill" id="sidebarFill"></div>
+      </div>
+      <div class="sidebar-progress-label" id="sidebarPct">0%</div>
+    </div>
+  </aside>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-name">Your Name</a>
+    <ul class="nav-links">
+      <li><a href="#work">Work</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#talks">Talks</a></li>
+      <li><a href="#contact-sec">Contact</a></li>
+    </ul>
+    <a href="mailto:you@example.com" class="nav-cta">Say hello</a>
+  </nav>
+
+  <!-- HERO -->
+  <div id="hero">
+    <div class="hero-left fade">
+      <div class="hero-tag">Researcher &amp; Builder</div>
+      <h1 class="hero-name">
+        Your Name.<br>
+        <em>Making things<br>that matter.</em>
+      </h1>
+      <p class="hero-bio">
+        I research and build at the intersection of <strong>AI, education, and human-computer interaction</strong>. I focus on how people learn with and about technology — and what that means for the tools we create.
+      </p>
+      <div class="hero-links">
+        <a href="#work"        class="hl hl-solid">View my work →</a>
+        <a href="/cv.pdf"      class="hl hl-outline">Download CV</a>
+        <a href="https://github.com/yourusername" class="hl hl-outline" target="_blank">GitHub</a>
+        <a href="https://twitter.com/yourusername" class="hl hl-outline" target="_blank">Twitter</a>
+      </div>
+    </div>
+    <div class="hero-photo-wrap fade">
+      <div class="hero-photo">
+        <!-- Replace src with your photo: <img src="photo.jpg" alt="Your Name"> -->
+        <div class="photo-placeholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+            <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+          </svg>
+          <span>Add your photo</span>
+        </div>
+      </div>
+      <div class="hero-photo-badge">
+        <span>3+</span>
+        Years building
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURED WORK -->
+  <section id="work" class="section">
+    <div class="sec-hdr">
+      <div>
+        <div class="sec-label">Featured work</div>
+        <h2 class="sec-title">Projects &amp; Research</h2>
+      </div>
+      <a href="https://github.com/yourusername" class="sec-more" target="_blank">All projects →</a>
+    </div>
+    <div class="work-grid">
+
+      <div class="wcard wide fade">
+        <div class="wcard-img" style="font-size:4rem;">🤖</div>
+        <div class="wcard-body">
+          <div class="wcard-cat">Featured Project</div>
+          <div class="wcard-title">Your Most Impressive Project</div>
+          <p class="wcard-desc">Describe the project clearly: what problem does it solve, who it's for, and what makes it meaningful. This is your spotlight piece — give it a compelling description.</p>
+          <div class="wcard-tags">
+            <span class="wtag">AI</span>
+            <span class="wtag">Education</span>
+            <span class="wtag">Python</span>
+            <span class="wtag">Open Source</span>
+          </div>
+          <a href="#" class="wlink">View project →</a>
+        </div>
+      </div>
+
+      <div class="wcard fade">
+        <div class="wcard-img" style="font-size:3rem;">🌱</div>
+        <div class="wcard-body">
+          <div class="wcard-cat">Research</div>
+          <div class="wcard-title">Second Project or Research Area</div>
+          <p class="wcard-desc">A short, clear description of this project. What did you build or study? What was the outcome?</p>
+          <div class="wcard-tags">
+            <span class="wtag">HCI</span><span class="wtag">Research</span>
+          </div>
+          <a href="#" class="wlink">Read more →</a>
+        </div>
+      </div>
+
+      <div class="wcard fade">
+        <div class="wcard-img" style="font-size:3rem;">⚡</div>
+        <div class="wcard-body">
+          <div class="wcard-cat">Tool / Open Source</div>
+          <div class="wcard-title">Third Project or Tool</div>
+          <p class="wcard-desc">A library, tool, or side project. Mention usage, stars, or community impact if relevant.</p>
+          <div class="wcard-tags">
+            <span class="wtag">JavaScript</span><span class="wtag">Open Source</span>
+          </div>
+          <a href="#" class="wlink">GitHub →</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="section">
+    <div class="sec-hdr">
+      <div>
+        <div class="sec-label">About me</div>
+        <h2 class="sec-title">Who I am</h2>
+      </div>
+    </div>
+    <div id="about-full">
+      <div class="about-text fade">
+        <p>
+          I'm <strong>Your Name</strong>, a researcher and developer working at the intersection of AI, education, and human-centered design. I believe technology should be understandable, accessible, and genuinely useful — not just impressive.
+        </p>
+        <p>
+          My work focuses on <strong>how people learn with and about AI systems</strong>, and on building tools that make that experience better. I'm especially interested in the communities that are often left out of these conversations.
+        </p>
+        <p>
+          Previously, I've worked at [Organization/University], collaborated with [Team/Lab], and contributed to projects used by thousands of people around the world.
+        </p>
+        <p>
+          I grew up in [Place], and I now live in [City]. Outside of work I love [hobby], [hobby], and finding the best [food] wherever I am.
+        </p>
+        <div style="margin-top:1.8rem;">
+          <a href="/cv.pdf" class="hl hl-solid" style="font-size:13.5px;">Download full CV →</a>
+        </div>
+      </div>
+      <div class="about-aside fade">
+        <div class="aside-block">
+          <div class="aside-title">Interests</div>
+          <ul class="aside-list">
+            <li>AI &amp; Education</li>
+            <li>Human-Computer Interaction</li>
+            <li>Computational Making</li>
+            <li>Community &amp; Access</li>
+            <li>Open Source</li>
+          </ul>
+        </div>
+        <div class="aside-block">
+          <div class="aside-title">Education</div>
+          <ul class="aside-list">
+            <li>PhD, Your Field — University Name</li>
+            <li>MSc, Your Field — University Name</li>
+            <li>BSc, Your Field — University Name</li>
+          </ul>
+        </div>
+        <div class="aside-block">
+          <div class="aside-title">Affiliations</div>
+          <ul class="aside-list">
+            <li>Lab / Research Group Name</li>
+            <li>Organization Name</li>
+            <li>Community / Volunteer</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PUBLICATIONS -->
+  <section id="publications" class="section">
+    <div class="sec-hdr">
+      <div>
+        <div class="sec-label">Research</div>
+        <h2 class="sec-title">Publications</h2>
+      </div>
+      <a href="https://scholar.google.com" class="sec-more" target="_blank">Google Scholar →</a>
+    </div>
+    <div class="pub-list">
+
+      <div class="pub-item fade">
+        <div class="pub-year">2026</div>
+        <div>
+          <div class="pub-title">Title of your most recent paper or publication</div>
+          <div class="pub-venue">Conference Name / Journal Name, 2026</div>
+          <div class="pub-links">
+            <a href="#" class="pub-link">PDF</a>
+            <a href="#" class="pub-link">DOI</a>
+            <a href="#" class="pub-link">Code</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pub-item fade">
+        <div class="pub-year">2025</div>
+        <div>
+          <div class="pub-title">Title of your second publication</div>
+          <div class="pub-venue">Workshop on Something Interesting, CHI 2025</div>
+          <div class="pub-links">
+            <a href="#" class="pub-link">PDF</a>
+            <a href="#" class="pub-link">Slides</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pub-item fade">
+        <div class="pub-year">2024</div>
+        <div>
+          <div class="pub-title">Another paper, project report, or article</div>
+          <div class="pub-venue">Journal of Something, Vol. 12, 2024</div>
+          <div class="pub-links">
+            <a href="#" class="pub-link">PDF</a>
+            <a href="#" class="pub-link">DOI</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pub-item fade">
+        <div class="pub-year">2023</div>
+        <div>
+          <div class="pub-title">Earlier publication or preprint</div>
+          <div class="pub-venue">arXiv preprint, 2023</div>
+          <div class="pub-links">
+            <a href="#" class="pub-link">arXiv</a>
+            <a href="#" class="pub-link">Code</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- TALKS -->
+  <section id="talks" class="section">
+    <div class="sec-hdr">
+      <div>
+        <div class="sec-label">Speaking</div>
+        <h2 class="sec-title">Talks &amp; Panels</h2>
+      </div>
+    </div>
+    <div class="talks-grid">
+
+      <div class="talk-card fade">
+        <div class="talk-meta">
+          <span class="talk-event">Conference Name</span>
+          <span class="talk-date">May 2026</span>
+        </div>
+        <div class="talk-title">Title of your talk or panel presentation</div>
+        <p class="talk-desc">A brief description of what you spoke about — the audience, the topic, the key message.</p>
+      </div>
+
+      <div class="talk-card fade">
+        <div class="talk-meta">
+          <span class="talk-event">Workshop / Summit</span>
+          <span class="talk-date">Jan 2026</span>
+        </div>
+        <div class="talk-title">Another talk, keynote, or panel</div>
+        <p class="talk-desc">Describe the context — was it a keynote, a panel, an invited talk? Who was in the audience?</p>
+      </div>
+
+      <div class="talk-card fade">
+        <div class="talk-meta">
+          <span class="talk-event">University / Guest Lecture</span>
+          <span class="talk-date">Oct 2025</span>
+        </div>
+        <div class="talk-title">Guest lecture or invited presentation</div>
+        <p class="talk-desc">A guest lecture, podcast appearance, or invited talk at a university or research lab.</p>
+      </div>
+
+      <div class="talk-card fade">
+        <div class="talk-meta">
+          <span class="talk-event">Podcast / Media</span>
+          <span class="talk-date">Jun 2025</span>
+        </div>
+        <div class="talk-title">Podcast episode, interview, or media feature</div>
+        <p class="talk-desc">A podcast, press mention, or media feature about your work or perspective.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact-sec">
+    <div class="contact-inner">
+      <div class="contact-text fade">
+        <div class="sec-label">Contact</div>
+        <h2 class="sec-title">Let's connect.</h2>
+        <p>
+          I'm always happy to hear from people working on interesting problems — whether it's a collaboration, a talk, a research question, or just a conversation.
+        </p>
+        <p>The best way to reach me is by email.</p>
+        <div class="social-row">
+          <a href="mailto:you@example.com" class="soc">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            you@example.com
+          </a>
+          <a href="https://twitter.com/yourusername" class="soc" target="_blank">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            @yourusername
+          </a>
+          <a href="https://github.com/yourusername" class="soc" target="_blank">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+            github.com/yourusername
+          </a>
+          <a href="https://linkedin.com/in/yourusername" class="soc" target="_blank">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            linkedin.com/in/yourusername
+          </a>
+        </div>
+      </div>
+      <div class="contact-form fade">
+        <div class="fg">
+          <label>Name</label>
+          <input type="text" id="fn" placeholder="Your name"/>
+        </div>
+        <div class="fg">
+          <label>Email</label>
+          <input type="email" id="fe" placeholder="your@email.com"/>
+        </div>
+        <div class="fg">
+          <label>Subject</label>
+          <input type="text" id="fs" placeholder="Collaboration, talk, question…"/>
+        </div>
+        <div class="fg">
+          <label>Message</label>
+          <textarea id="fm" rows="5" placeholder="What's on your mind?"></textarea>
+        </div>
+        <button class="fsub" onclick="sendMail()">Send message →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="f-copy">© 2026 Your Name — Hosted on GitHub Pages</span>
+    <a href="#" class="f-top">Back to top ↑</a>
+  </footer>
+
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Fade in on scroll
+    gsap.utils.toArray('.fade').forEach(el => {
+      gsap.fromTo(el,
+        { opacity: 0, y: 22 },
+        {
+          opacity: 1, y: 0,
+          duration: 0.7, ease: 'power2.out',
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 88%',
+            toggleActions: 'play none none none'
+          }
+        }
+      );
+    });
+
+    // GAME SIDEBAR — active section tracking
+    const sidebarLinks = document.querySelectorAll('.sidebar-menu a');
+    const sections = ['hero','work','about','publications','talks','contact-sec'];
+
+    function setActive(id) {
+      sidebarLinks.forEach(a => {
+        a.classList.toggle('active', a.dataset.section === id);
+      });
+    }
+
+    // Scroll progress bar
+    const fill = document.getElementById('sidebarFill');
+    const pct  = document.getElementById('sidebarPct');
+
+    window.addEventListener('scroll', () => {
+      // progress
+      const scrolled = window.scrollY;
+      const total    = document.body.scrollHeight - window.innerHeight;
+      const progress = Math.round((scrolled / total) * 100);
+      fill.style.width = progress + '%';
+      pct.textContent  = progress + '%';
+
+      // active section
+      let current = 'hero';
+      sections.forEach(id => {
+        const el = document.getElementById(id) || document.querySelector('#' + id);
+        if (!el) return;
+        if (scrolled >= el.offsetTop - 120) current = id;
+      });
+      setActive(current);
+    });
+
+    // init
+    setActive('hero');
+
+    // Smooth scroll for sidebar links
+    sidebarLinks.forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    // GAME SOUND — hover tick using Web Audio API
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    let audioCtx = null;
+
+    function initAudio() {
+      if (!audioCtx) audioCtx = new AudioCtx();
+    }
+
+    function playTick() {
+      if (!audioCtx) return;
+      const osc  = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+
+      osc.type = 'square';
+      osc.frequency.setValueAtTime(520, audioCtx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(320, audioCtx.currentTime + 0.04);
+
+      gain.gain.setValueAtTime(0.08, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.06);
+
+      osc.start(audioCtx.currentTime);
+      osc.stop(audioCtx.currentTime + 0.07);
+    }
+
+    function playSelect() {
+      if (!audioCtx) return;
+      // Two-tone confirm blip on click
+      [0, 0.07].forEach((delay, i) => {
+        const osc  = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.type = 'square';
+        osc.frequency.setValueAtTime(i === 0 ? 440 : 660, audioCtx.currentTime + delay);
+        gain.gain.setValueAtTime(0.1, audioCtx.currentTime + delay);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + delay + 0.08);
+        osc.start(audioCtx.currentTime + delay);
+        osc.stop(audioCtx.currentTime + delay + 0.09);
+      });
+    }
+
+    // Attach sounds — first interaction unlocks AudioContext
+    document.body.addEventListener('pointerdown', initAudio, { once: true });
+
+    sidebarLinks.forEach(a => {
+      a.addEventListener('mouseenter', () => { initAudio(); playTick(); });
+      a.addEventListener('click', () => playSelect());
+    });
+      const n = document.getElementById('fn').value;
+      const e = document.getElementById('fe').value;
+      const s = document.getElementById('fs').value;
+      const m = document.getElementById('fm').value;
+      if (!n || !e || !m) { alert('Please fill in name, email and message.'); return; }
+      const sub = encodeURIComponent((s || 'Message') + ' — from ' + n);
+      const body = encodeURIComponent(m + '\n\nFrom: ' + n + ' (' + e + ')');
+      window.location.href = 'mailto:you@example.com?subject=' + sub + '&body=' + body;
+    }
+  </script>
+</body>
+</html>
